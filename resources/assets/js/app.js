@@ -15,6 +15,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import VueSocketio from 'vue-socket.io';
+
+Vue.use(VueSocketio, 'http://localhost:1923');
+
 Vue.component('chat-messages', require('./components/ChatMessages.vue'));
 Vue.component('chat-form', require('./components/ChatForm.vue'));
 
@@ -27,6 +31,13 @@ const app = new Vue({
 
     created() {
         this.fetchMessages();
+        // Echo.private('chat')
+        //     .listen('MessageSent', (e) => {
+        //         this.messages.push({
+        //             message: e.message.message,
+        //             user: e.user
+        //         });
+        //     });
     },
 
     methods: {
@@ -39,7 +50,7 @@ const app = new Vue({
         addMessage(message) {
             this.messages.push(message);
 
-            axiso.post('/messages', message).then(response => {
+            axios.post('/messages', message).then(response => {
                console.log(response.data);
             });
         }

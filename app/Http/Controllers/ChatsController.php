@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use LRedis;
+use Redis;
 use App\Events\MessageSent;
 use App\Message;
 use Illuminate\Http\Request;
@@ -49,7 +49,7 @@ class ChatsController extends Controller
             'message' => $request->input('message')
         ]);
 
-        $redis = LRedis::connection();
+        $redis = Redis::connection();
         $redis->publish('message', $message);
 
         broadcast(new MessageSent($user, $message))->toOthers();
