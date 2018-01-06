@@ -17,7 +17,7 @@ window.Vue = require('vue');
 
 import VueSocketio from 'vue-socket.io';
 
-Vue.use(VueSocketio, 'http://localhost:1923');
+Vue.use(VueSocketio, 'http://localhost:8890');
 
 Vue.component('chat-messages', require('./components/ChatMessages.vue'));
 Vue.component('chat-form', require('./components/ChatForm.vue'));

@@ -1102,7 +1102,7 @@ window.Vue = __webpack_require__(36);
 
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_socket_io___default.a, 'http://localhost:1923');
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_socket_io___default.a, 'http://localhost:8890');
 
 Vue.component('chat-messages', __webpack_require__(40));
 Vue.component('chat-form', __webpack_require__(43));
@@ -43004,7 +43004,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['messages']
+	props: ['messages'],
+
+	sockets: {
+		message: function message(data) {
+			var message = JSON.parse(data);
+			console.log('Success: Notification sent!');
+		}
+	}
 });
 
 /***/ }),
@@ -43023,19 +43030,11 @@ var render = function() {
         _c("div", { staticClass: "chat-body clearfix" }, [
           _c("div", { staticClass: "header" }, [
             _c("strong", { staticClass: "primary-forn" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(message.user.name) +
-                  "\n                "
-              )
+              _vm._v("\n\t\t\t\t\t" + _vm._s(message.user.name) + "\n\t\t\t\t")
             ])
           ]),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n                " + _vm._s(message.message) + "\n            "
-            )
-          ])
+          _c("p", [_vm._v("\n\t\t\t\t" + _vm._s(message.message) + "\n\t\t\t")])
         ])
       ])
     })
